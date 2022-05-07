@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AmbulanceApp</string>
+    <string name="title_activity_home">home</string>
+    <string name="title_activity_homepage">homepage</string>
+</resources>

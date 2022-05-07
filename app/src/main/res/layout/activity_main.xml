@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/ems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="236dp"
+        android:fontFamily="@font/mulish_medium"
+        android:gravity="center"
+        android:text="Emergency Ambulance Service"
+        android:textColor="#F23545"
+        android:textFontWeight="700"
+        android:textSize="56dp"
+        android:textStyle="normal" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ems"
+        android:layout_marginTop="128dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/mainlogo" />
+
+</RelativeLayout>
