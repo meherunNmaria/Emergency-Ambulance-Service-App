@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Emergency Ambulance Service App</h1>
+    <h2>Driver Info</h2>
+
+    <form>
+      <label>Driver ID: </label>
+      <input type="text" id="driver_id" required>
+      <br>
+      <label>Driver Name: </label>
+      <input type="text" id="driver_name" required>
+      <br>
+      <label>Phone: </label>
+      <input type="text" id="phone" required>
+      <br>
+      <label for="service_type">Service Type:</label><br><br>
+      <select id="service_type" required>
+        <option value="hospital">Hospital</option>
+        <option value="comapny">Company</option>
+        <option value="personal">Personal</option>
+      </select><br>
+      <br>
+      <label>Hospital/ Company name (if personal service, input N/A): </label>
+      <input type="text" id="hospital_name" required>
+      <br>
+      <label>License plate no: </label>
+      <input type="text" id="license_plate_no" required>
+      <br>
+      <label>Ambulance Fee (per kilometer): </label>
+      <input type="text" id="ambulance_fee" required>
+      <br>
+      <button type="submit" id="submit" class="btn btn-primary">Add</button>
+      <button><a href="home.html">Home</a></button>
+    </form>
+  </body>
+</html>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+  import { getDatabase, set, ref, push, child} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyB8nE8Z9Qe5jwBIbtoz5vU0plcLU1lo5Fo",
+    authDomain: "ambulanceapp-ab2c8.firebaseapp.com",
+    databaseURL: "https://ambulanceapp-ab2c8-default-rtdb.firebaseio.com/",
+    projectId: "ambulanceapp-ab2c8",
+    storageBucket: "ambulanceapp-ab2c8.appspot.com",
+    messagingSenderId: "1015688639977",
+    appId: "1:1015688639977:web:5e2ac1db0409486b138778",
+    measurementId: "G-DHMQWEQ6FL"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  // Get a reference to the database service
+const database = getDatabase(app);
+
+submit.addEventListener('click',(e) => {
+  
+  var driver_id = document.getElementById('driver_id').value;
+  var driver_name = document.getElementById('driver_name').value;
+  var phone = document.getElementById('phone').value;
+  var license_plate_no = document.getElementById('license_plate_no').value;
+  var hospital_name = document.getElementById('hospital_name').value;
+  var ambulance_fee = document.getElementById('ambulance_fee').value;
+  var service_type = document.getElementById('service_type').value;
+
+  const userId = push(child(ref(database), 'drivers')).key;
+
+  set(ref(database, 'drivers/' + userId), {
+
+    driver_id: driver_id,
+    driver_name: driver_name,
+    phone: phone,
+    license_plate_no: license_plate_no,
+    hospital_name: hospital_name,
+    ambulance_fee: ambulance_fee,
+    service_type: service_type
+  });
+
+  alert('saved');
+
+});
+</script>
